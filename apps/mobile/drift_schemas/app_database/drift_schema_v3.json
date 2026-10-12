@@ -1,0 +1,1017 @@
+{
+  "_meta": {
+    "description": "This file contains a serialized version of schema entities for drift.",
+    "version": "1.3.0"
+  },
+  "options": {
+    "store_date_time_values_as_text": false
+  },
+  "entities": [
+    {
+      "id": 0,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "messages",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "request_id",
+            "getter_name": "requestId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_year",
+            "getter_name": "dayYear",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_month",
+            "getter_name": "dayMonth",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_day",
+            "getter_name": "dayDay",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_time_zone_id",
+            "getter_name": "dayTimeZoneId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_cutoff_micros",
+            "getter_name": "dayCutoffMicros",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_policy_version",
+            "getter_name": "dayPolicyVersion",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "role",
+            "getter_name": "role",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "message_text",
+            "getter_name": "messageText",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "photo_asset_id",
+            "getter_name": "photoAssetId",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "created_at_utc",
+            "getter_name": "createdAtUtc",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "status",
+            "getter_name": "status",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [
+          "CHECK (length(trim(\"id\")) > 0)",
+          "CHECK (length(trim(\"request_id\")) > 0)",
+          "CHECK (length(trim(\"day_time_zone_id\")) > 0)",
+          "CHECK (\"day_year\" BETWEEN 1 AND 9999)",
+          "CHECK (\"day_month\" BETWEEN 1 AND 12)",
+          "CHECK (\"day_day\" BETWEEN 1 AND CASE WHEN \"day_month\" IN (4, 6, 9, 11) THEN 30 WHEN \"day_month\" = 2 THEN CASE WHEN (\"day_year\" % 400 = 0 OR (\"day_year\" % 4 = 0 AND \"day_year\" % 100 != 0)) THEN 29 ELSE 28 END ELSE 31 END)",
+          "CHECK (\"day_cutoff_micros\" = 0)",
+          "CHECK (\"day_policy_version\" = 1)",
+          "CHECK (\"role\" IN ('user', 'assistant'))",
+          "CHECK (\"status\" IN ('pending', 'sent', 'failed'))",
+          "CHECK (\"message_text\" IS NULL OR length(trim(\"message_text\")) > 0)",
+          "CHECK (\"photo_asset_id\" IS NULL OR length(trim(\"photo_asset_id\")) > 0)",
+          "CHECK (\"message_text\" IS NOT NULL OR \"photo_asset_id\" IS NOT NULL)"
+        ],
+        "explicit_pk": [
+          "id"
+        ],
+        "unique_keys": [
+          [
+            "request_id",
+            "role"
+          ]
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "diary_entries",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_year",
+            "getter_name": "dayYear",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_month",
+            "getter_name": "dayMonth",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_day",
+            "getter_name": "dayDay",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_time_zone_id",
+            "getter_name": "dayTimeZoneId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_cutoff_micros",
+            "getter_name": "dayCutoffMicros",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_policy_version",
+            "getter_name": "dayPolicyVersion",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "version",
+            "getter_name": "version",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "status",
+            "getter_name": "status",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "snapshot_schema_version",
+            "getter_name": "snapshotSchemaVersion",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "snapshot_json",
+            "getter_name": "snapshotJson",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "generation_id",
+            "getter_name": "generationId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "generated_at_utc",
+            "getter_name": "generatedAtUtc",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "updated_at_utc",
+            "getter_name": "updatedAtUtc",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [
+          "CHECK (length(trim(\"id\")) > 0)",
+          "CHECK (length(trim(\"day_time_zone_id\")) > 0)",
+          "CHECK (length(trim(\"generation_id\")) > 0)",
+          "CHECK (length(trim(\"snapshot_json\")) > 0)",
+          "CHECK (\"day_year\" BETWEEN 1 AND 9999)",
+          "CHECK (\"day_month\" BETWEEN 1 AND 12)",
+          "CHECK (\"day_day\" BETWEEN 1 AND CASE WHEN \"day_month\" IN (4, 6, 9, 11) THEN 30 WHEN \"day_month\" = 2 THEN CASE WHEN (\"day_year\" % 400 = 0 OR (\"day_year\" % 4 = 0 AND \"day_year\" % 100 != 0)) THEN 29 ELSE 28 END ELSE 31 END)",
+          "CHECK (\"day_cutoff_micros\" = 0)",
+          "CHECK (\"day_policy_version\" = 1)",
+          "CHECK (\"version\" > 0)",
+          "CHECK (\"status\" IN ('draft', 'finalized'))",
+          "CHECK (\"snapshot_schema_version\" = 1)",
+          "CHECK (\"updated_at_utc\" >= \"generated_at_utc\")"
+        ],
+        "explicit_pk": [
+          "id"
+        ],
+        "unique_keys": [
+          [
+            "generation_id"
+          ],
+          [
+            "day_year",
+            "day_month",
+            "day_day",
+            "day_time_zone_id",
+            "day_cutoff_micros",
+            "day_policy_version",
+            "version"
+          ]
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "media_assets",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_year",
+            "getter_name": "dayYear",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_month",
+            "getter_name": "dayMonth",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_day",
+            "getter_name": "dayDay",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_time_zone_id",
+            "getter_name": "dayTimeZoneId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_cutoff_micros",
+            "getter_name": "dayCutoffMicros",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day_policy_version",
+            "getter_name": "dayPolicyVersion",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "storage_key",
+            "getter_name": "storageKey",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "mime_type",
+            "getter_name": "mimeType",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "byte_length",
+            "getter_name": "byteLength",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "created_at_utc",
+            "getter_name": "createdAtUtc",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "lifecycle",
+            "getter_name": "lifecycle",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [
+          "CHECK (length(trim(\"id\")) > 0)",
+          "CHECK (length(trim(\"day_time_zone_id\")) > 0)",
+          "CHECK (length(trim(\"storage_key\")) > 0)",
+          "CHECK (substr(\"storage_key\", 1, 1) NOT IN ('/', char(92)))",
+          "CHECK (\"storage_key\" NOT GLOB '[A-Za-z]*:*')",
+          "CHECK (instr(\"storage_key\", char(0)) = 0)",
+          "CHECK (\"storage_key\" NOT IN ('.', '..'))",
+          "CHECK (\"storage_key\" NOT GLOB './*')",
+          "CHECK (\"storage_key\" NOT GLOB '../*')",
+          "CHECK (\"storage_key\" NOT GLOB '*/./*')",
+          "CHECK (\"storage_key\" NOT GLOB '*/../*')",
+          "CHECK (\"storage_key\" NOT GLOB '*/.')",
+          "CHECK (\"storage_key\" NOT GLOB '*/..')",
+          "CHECK (\"storage_key\" NOT GLOB '*\\.\\*')",
+          "CHECK (\"storage_key\" NOT GLOB '*\\..\\*')",
+          "CHECK (\"storage_key\" NOT GLOB '*\\.')",
+          "CHECK (\"storage_key\" NOT GLOB '*\\..')",
+          "CHECK (\"day_year\" BETWEEN 1 AND 9999)",
+          "CHECK (\"day_month\" BETWEEN 1 AND 12)",
+          "CHECK (\"day_day\" BETWEEN 1 AND CASE WHEN \"day_month\" IN (4, 6, 9, 11) THEN 30 WHEN \"day_month\" = 2 THEN CASE WHEN (\"day_year\" % 400 = 0 OR (\"day_year\" % 4 = 0 AND \"day_year\" % 100 != 0)) THEN 29 ELSE 28 END ELSE 31 END)",
+          "CHECK (\"day_cutoff_micros\" = 0)",
+          "CHECK (\"day_policy_version\" = 1)",
+          "CHECK (\"mime_type\" IN ('image/jpeg', 'image/png', 'image/heic'))",
+          "CHECK (\"byte_length\" > 0)",
+          "CHECK (\"lifecycle\" IN ('staging', 'ready', 'deleting', 'missing'))"
+        ],
+        "explicit_pk": [
+          "id"
+        ],
+        "unique_keys": [
+          [
+            "storage_key"
+          ]
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "ai_persona",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "singleton_key",
+            "getter_name": "singletonKey",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "persona_id",
+            "getter_name": "personaId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "persona_name",
+            "getter_name": "personaName",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "avatar_seed",
+            "getter_name": "avatarSeed",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "tone",
+            "getter_name": "tone",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "custom_instructions",
+            "getter_name": "customInstructions",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "reaction_length",
+            "getter_name": "reactionLength",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [
+          "CHECK (\"singleton_key\" = 1)",
+          "CHECK (length(\"persona_id\") BETWEEN 1 AND 128 AND \"persona_id\" = trim(\"persona_id\"))",
+          "CHECK (length(\"persona_name\") BETWEEN 1 AND 40 AND \"persona_name\" = trim(\"persona_name\"))",
+          "CHECK (length(\"avatar_seed\") BETWEEN 1 AND 128 AND \"avatar_seed\" = trim(\"avatar_seed\"))",
+          "CHECK (length(\"tone\") BETWEEN 1 AND 160 AND \"tone\" = trim(\"tone\"))",
+          "CHECK (length(\"custom_instructions\") <= 1000 AND \"custom_instructions\" = trim(\"custom_instructions\"))",
+          "CHECK (\"reaction_length\" IN ('concise', 'balanced', 'expressive'))"
+        ],
+        "explicit_pk": [
+          "singleton_key"
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "memory_facts",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "fact",
+            "getter_name": "fact",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "source_ids_schema_version",
+            "getter_name": "sourceIdsSchemaVersion",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "source_ids_json",
+            "getter_name": "sourceIdsJson",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "category",
+            "getter_name": "category",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "sensitivity",
+            "getter_name": "sensitivity",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "status",
+            "getter_name": "status",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "created_at_utc",
+            "getter_name": "createdAtUtc",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "updated_at_utc",
+            "getter_name": "updatedAtUtc",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [
+          "CHECK (length(trim(\"id\")) > 0)",
+          "CHECK (length(trim(\"fact\")) > 0)",
+          "CHECK (\"source_ids_schema_version\" = 1)",
+          "CHECK (length(trim(\"source_ids_json\")) > 0)",
+          "CHECK (\"category\" IN ('preference', 'routine', 'relationship', 'place', 'milestone', 'other'))",
+          "CHECK (\"sensitivity\" IN ('standard', 'sensitive'))",
+          "CHECK (\"status\" IN ('candidate', 'active', 'inactive'))",
+          "CHECK (\"updated_at_utc\" >= \"created_at_utc\")"
+        ],
+        "explicit_pk": [
+          "id"
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "references": [
+        0
+      ],
+      "type": "index",
+      "data": {
+        "on": 0,
+        "name": "messages_day_created_at_id_idx",
+        "sql": null,
+        "unique": false,
+        "columns": [
+          {
+            "column": "day_year",
+            "order_by": null
+          },
+          {
+            "column": "day_month",
+            "order_by": null
+          },
+          {
+            "column": "day_day",
+            "order_by": null
+          },
+          {
+            "column": "day_time_zone_id",
+            "order_by": null
+          },
+          {
+            "column": "day_cutoff_micros",
+            "order_by": null
+          },
+          {
+            "column": "day_policy_version",
+            "order_by": null
+          },
+          {
+            "column": "created_at_utc",
+            "order_by": null
+          },
+          {
+            "column": "id",
+            "order_by": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "references": [
+        1
+      ],
+      "type": "index",
+      "data": {
+        "on": 1,
+        "name": "diary_entries_day_version_idx",
+        "sql": null,
+        "unique": false,
+        "columns": [
+          {
+            "column": "day_year",
+            "order_by": null
+          },
+          {
+            "column": "day_month",
+            "order_by": null
+          },
+          {
+            "column": "day_day",
+            "order_by": null
+          },
+          {
+            "column": "day_time_zone_id",
+            "order_by": null
+          },
+          {
+            "column": "day_cutoff_micros",
+            "order_by": null
+          },
+          {
+            "column": "day_policy_version",
+            "order_by": null
+          },
+          {
+            "column": "version",
+            "order_by": "descending"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "references": [
+        1
+      ],
+      "type": "index",
+      "data": {
+        "on": 1,
+        "name": "diary_entries_updated_at_id_idx",
+        "sql": null,
+        "unique": false,
+        "columns": [
+          {
+            "column": "updated_at_utc",
+            "order_by": "descending"
+          },
+          {
+            "column": "id",
+            "order_by": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "references": [
+        2
+      ],
+      "type": "index",
+      "data": {
+        "on": 2,
+        "name": "media_assets_day_created_at_id_idx",
+        "sql": null,
+        "unique": false,
+        "columns": [
+          {
+            "column": "day_year",
+            "order_by": null
+          },
+          {
+            "column": "day_month",
+            "order_by": null
+          },
+          {
+            "column": "day_day",
+            "order_by": null
+          },
+          {
+            "column": "day_time_zone_id",
+            "order_by": null
+          },
+          {
+            "column": "day_cutoff_micros",
+            "order_by": null
+          },
+          {
+            "column": "day_policy_version",
+            "order_by": null
+          },
+          {
+            "column": "created_at_utc",
+            "order_by": null
+          },
+          {
+            "column": "id",
+            "order_by": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "references": [
+        4
+      ],
+      "type": "index",
+      "data": {
+        "on": 4,
+        "name": "memory_facts_updated_at_id_idx",
+        "sql": null,
+        "unique": false,
+        "columns": [
+          {
+            "column": "updated_at_utc",
+            "order_by": "descending"
+          },
+          {
+            "column": "id",
+            "order_by": null
+          }
+        ]
+      }
+    }
+  ],
+  "fixed_sql": [
+    {
+      "name": "messages",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"messages\" (\"id\" TEXT NOT NULL, \"request_id\" TEXT NOT NULL, \"day_year\" INTEGER NOT NULL, \"day_month\" INTEGER NOT NULL, \"day_day\" INTEGER NOT NULL, \"day_time_zone_id\" TEXT NOT NULL, \"day_cutoff_micros\" INTEGER NOT NULL, \"day_policy_version\" INTEGER NOT NULL, \"role\" TEXT NOT NULL, \"message_text\" TEXT NULL, \"photo_asset_id\" TEXT NULL, \"created_at_utc\" INTEGER NOT NULL, \"status\" TEXT NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"request_id\", \"role\"), CHECK (length(trim(\"id\")) > 0), CHECK (length(trim(\"request_id\")) > 0), CHECK (length(trim(\"day_time_zone_id\")) > 0), CHECK (\"day_year\" BETWEEN 1 AND 9999), CHECK (\"day_month\" BETWEEN 1 AND 12), CHECK (\"day_day\" BETWEEN 1 AND CASE WHEN \"day_month\" IN (4, 6, 9, 11) THEN 30 WHEN \"day_month\" = 2 THEN CASE WHEN (\"day_year\" % 400 = 0 OR (\"day_year\" % 4 = 0 AND \"day_year\" % 100 != 0)) THEN 29 ELSE 28 END ELSE 31 END), CHECK (\"day_cutoff_micros\" = 0), CHECK (\"day_policy_version\" = 1), CHECK (\"role\" IN ('user', 'assistant')), CHECK (\"status\" IN ('pending', 'sent', 'failed')), CHECK (\"message_text\" IS NULL OR length(trim(\"message_text\")) > 0), CHECK (\"photo_asset_id\" IS NULL OR length(trim(\"photo_asset_id\")) > 0), CHECK (\"message_text\" IS NOT NULL OR \"photo_asset_id\" IS NOT NULL));"
+        }
+      ]
+    },
+    {
+      "name": "diary_entries",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"diary_entries\" (\"id\" TEXT NOT NULL, \"day_year\" INTEGER NOT NULL, \"day_month\" INTEGER NOT NULL, \"day_day\" INTEGER NOT NULL, \"day_time_zone_id\" TEXT NOT NULL, \"day_cutoff_micros\" INTEGER NOT NULL, \"day_policy_version\" INTEGER NOT NULL, \"version\" INTEGER NOT NULL, \"status\" TEXT NOT NULL, \"snapshot_schema_version\" INTEGER NOT NULL, \"snapshot_json\" TEXT NOT NULL, \"generation_id\" TEXT NOT NULL, \"generated_at_utc\" INTEGER NOT NULL, \"updated_at_utc\" INTEGER NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"generation_id\"), UNIQUE (\"day_year\", \"day_month\", \"day_day\", \"day_time_zone_id\", \"day_cutoff_micros\", \"day_policy_version\", \"version\"), CHECK (length(trim(\"id\")) > 0), CHECK (length(trim(\"day_time_zone_id\")) > 0), CHECK (length(trim(\"generation_id\")) > 0), CHECK (length(trim(\"snapshot_json\")) > 0), CHECK (\"day_year\" BETWEEN 1 AND 9999), CHECK (\"day_month\" BETWEEN 1 AND 12), CHECK (\"day_day\" BETWEEN 1 AND CASE WHEN \"day_month\" IN (4, 6, 9, 11) THEN 30 WHEN \"day_month\" = 2 THEN CASE WHEN (\"day_year\" % 400 = 0 OR (\"day_year\" % 4 = 0 AND \"day_year\" % 100 != 0)) THEN 29 ELSE 28 END ELSE 31 END), CHECK (\"day_cutoff_micros\" = 0), CHECK (\"day_policy_version\" = 1), CHECK (\"version\" > 0), CHECK (\"status\" IN ('draft', 'finalized')), CHECK (\"snapshot_schema_version\" = 1), CHECK (\"updated_at_utc\" >= \"generated_at_utc\"));"
+        }
+      ]
+    },
+    {
+      "name": "media_assets",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"media_assets\" (\"id\" TEXT NOT NULL, \"day_year\" INTEGER NOT NULL, \"day_month\" INTEGER NOT NULL, \"day_day\" INTEGER NOT NULL, \"day_time_zone_id\" TEXT NOT NULL, \"day_cutoff_micros\" INTEGER NOT NULL, \"day_policy_version\" INTEGER NOT NULL, \"storage_key\" TEXT NOT NULL, \"mime_type\" TEXT NOT NULL, \"byte_length\" INTEGER NOT NULL, \"created_at_utc\" INTEGER NOT NULL, \"lifecycle\" TEXT NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"storage_key\"), CHECK (length(trim(\"id\")) > 0), CHECK (length(trim(\"day_time_zone_id\")) > 0), CHECK (length(trim(\"storage_key\")) > 0), CHECK (substr(\"storage_key\", 1, 1) NOT IN ('/', char(92))), CHECK (\"storage_key\" NOT GLOB '[A-Za-z]*:*'), CHECK (instr(\"storage_key\", char(0)) = 0), CHECK (\"storage_key\" NOT IN ('.', '..')), CHECK (\"storage_key\" NOT GLOB './*'), CHECK (\"storage_key\" NOT GLOB '../*'), CHECK (\"storage_key\" NOT GLOB '*/./*'), CHECK (\"storage_key\" NOT GLOB '*/../*'), CHECK (\"storage_key\" NOT GLOB '*/.'), CHECK (\"storage_key\" NOT GLOB '*/..'), CHECK (\"storage_key\" NOT GLOB '*\\.\\*'), CHECK (\"storage_key\" NOT GLOB '*\\..\\*'), CHECK (\"storage_key\" NOT GLOB '*\\.'), CHECK (\"storage_key\" NOT GLOB '*\\..'), CHECK (\"day_year\" BETWEEN 1 AND 9999), CHECK (\"day_month\" BETWEEN 1 AND 12), CHECK (\"day_day\" BETWEEN 1 AND CASE WHEN \"day_month\" IN (4, 6, 9, 11) THEN 30 WHEN \"day_month\" = 2 THEN CASE WHEN (\"day_year\" % 400 = 0 OR (\"day_year\" % 4 = 0 AND \"day_year\" % 100 != 0)) THEN 29 ELSE 28 END ELSE 31 END), CHECK (\"day_cutoff_micros\" = 0), CHECK (\"day_policy_version\" = 1), CHECK (\"mime_type\" IN ('image/jpeg', 'image/png', 'image/heic')), CHECK (\"byte_length\" > 0), CHECK (\"lifecycle\" IN ('staging', 'ready', 'deleting', 'missing')));"
+        }
+      ]
+    },
+    {
+      "name": "ai_persona",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"ai_persona\" (\"singleton_key\" INTEGER NOT NULL, \"persona_id\" TEXT NOT NULL, \"persona_name\" TEXT NOT NULL, \"avatar_seed\" TEXT NOT NULL, \"tone\" TEXT NOT NULL, \"custom_instructions\" TEXT NOT NULL, \"reaction_length\" TEXT NOT NULL, PRIMARY KEY (\"singleton_key\"), CHECK (\"singleton_key\" = 1), CHECK (length(\"persona_id\") BETWEEN 1 AND 128 AND \"persona_id\" = trim(\"persona_id\")), CHECK (length(\"persona_name\") BETWEEN 1 AND 40 AND \"persona_name\" = trim(\"persona_name\")), CHECK (length(\"avatar_seed\") BETWEEN 1 AND 128 AND \"avatar_seed\" = trim(\"avatar_seed\")), CHECK (length(\"tone\") BETWEEN 1 AND 160 AND \"tone\" = trim(\"tone\")), CHECK (length(\"custom_instructions\") <= 1000 AND \"custom_instructions\" = trim(\"custom_instructions\")), CHECK (\"reaction_length\" IN ('concise', 'balanced', 'expressive')));"
+        }
+      ]
+    },
+    {
+      "name": "memory_facts",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"memory_facts\" (\"id\" TEXT NOT NULL, \"fact\" TEXT NOT NULL, \"source_ids_schema_version\" INTEGER NOT NULL, \"source_ids_json\" TEXT NOT NULL, \"category\" TEXT NOT NULL, \"sensitivity\" TEXT NOT NULL, \"status\" TEXT NOT NULL, \"created_at_utc\" INTEGER NOT NULL, \"updated_at_utc\" INTEGER NOT NULL, PRIMARY KEY (\"id\"), CHECK (length(trim(\"id\")) > 0), CHECK (length(trim(\"fact\")) > 0), CHECK (\"source_ids_schema_version\" = 1), CHECK (length(trim(\"source_ids_json\")) > 0), CHECK (\"category\" IN ('preference', 'routine', 'relationship', 'place', 'milestone', 'other')), CHECK (\"sensitivity\" IN ('standard', 'sensitive')), CHECK (\"status\" IN ('candidate', 'active', 'inactive')), CHECK (\"updated_at_utc\" >= \"created_at_utc\"));"
+        }
+      ]
+    },
+    {
+      "name": "messages_day_created_at_id_idx",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX messages_day_created_at_id_idx ON messages (day_year, day_month, day_day, day_time_zone_id, day_cutoff_micros, day_policy_version, created_at_utc, id)"
+        }
+      ]
+    },
+    {
+      "name": "diary_entries_day_version_idx",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX diary_entries_day_version_idx ON diary_entries (day_year, day_month, day_day, day_time_zone_id, day_cutoff_micros, day_policy_version, version DESC)"
+        }
+      ]
+    },
+    {
+      "name": "diary_entries_updated_at_id_idx",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX diary_entries_updated_at_id_idx ON diary_entries (updated_at_utc DESC, id)"
+        }
+      ]
+    },
+    {
+      "name": "media_assets_day_created_at_id_idx",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX media_assets_day_created_at_id_idx ON media_assets (day_year, day_month, day_day, day_time_zone_id, day_cutoff_micros, day_policy_version, created_at_utc, id)"
+        }
+      ]
+    },
+    {
+      "name": "memory_facts_updated_at_id_idx",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX memory_facts_updated_at_id_idx ON memory_facts (updated_at_utc DESC, id)"
+        }
+      ]
+    }
+  ]
+}

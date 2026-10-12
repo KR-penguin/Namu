@@ -1,0 +1,24 @@
+# OS and editor metadata
+.DS_Store
+.idea/
+.vscode/
+*.log
+*.swp
+
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local tool state
+.codex/
+
+# Generated dependencies and build outputs
+**/.dart_tool/
+**/.pub/
+**/build/
+**/coverage/
+**/node_modules/
+**/dist/
