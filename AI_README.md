@@ -7,7 +7,7 @@
 
 | 항목 | 값 |
 |---|---|
-| 기준일 | 2026-10-10 |
+| 기준일 | 2026-10-12 |
 | 단계 | Phase 3 — MVP 이후 최종 제품화 진행 중. 5개 언어 UI 현지화와 AI 응답 언어 계약 구현 완료 |
 | 기획 상태 | 아래 영구 비목표는 승인됨. 나머지 `PROJECT_PLAN.md`는 작업용 초안 |
 | 구현 | Android·iOS scaffold, Drift schema v3와 migration, local-first 메시지/일기 Gateway, persona·최근 대화·승인 기억의 제한적 Chat context, 사진 import·실제 로컬 preview, web/native production composition, 다중 page 일기 preview·편집·날짜별 보관·검색·재열람, 기억 승인·편집·삭제·개별 사용 중지/재사용, 다중 PNG 공유, chat 중단 복구, native IANA timezone, 자정 자동 초안·foreground 보정·날짜 회전, AI 데이터 전송 동의·철회와 Gateway 강제 경계 완료. 최초 실행 온보딩, 안전한 전체 로컬 삭제, versioned JSON 기록 내보내기, 로컬 수동 날씨 입력과 `ko`/`en`/`ja`/`zh-Hans`/`es` UI·AI 응답 언어 계약 완료 |
@@ -16,20 +16,20 @@
 | 이 호스트의 SDK | `/home/sean/.cache/namu-project/flutter/3.47.6/flutter`에 격리 보관. 저장소에는 포함하지 않음 |
 | App ID | scaffold 기본값 `com.example.namu` — 출시·외부 서비스 연결 전 반드시 교체 |
 | 실행·테스트 명령 | `cd apps/mobile && flutter pub get && flutter analyze && flutter test`; 브라우저 검토는 `flutter run -d web-server --web-hostname 127.0.0.1` |
-| 최근 검증 | 2026-10-10 현지화 통합 뒤 전체 Flutter test 500개 통과·analyze 0 issue·web build 성공. AI Gateway test 41개·typecheck·production build 통과 |
+| 최근 검증 | 2026-10-12 전체 Flutter test 502개 통과·analyze 0 issue·web release build 성공. AI Gateway test 41개·typecheck·production build·npm audit 통과 |
 | 로컬 빌드 제약 | 이 호스트에는 Android SDK가 없고 Linux에서는 iOS build를 할 수 없어 Android·iOS 실기기 build는 미검증 |
 | 실제 코드 entry point | `apps/mobile/lib/main.dart` |
-| 다음 한 작업 | Android/iOS 실기기에서 5개 locale의 큰 글자 layout, locale 전환, 공유 PNG와 OS share sheet를 회귀 검증 |
+| 다음 한 작업 | DEC-01·DEC-03·DEC-13을 닫고 실제 앱 ID·release signing과 production Gateway 인증/attestation 구현 범위를 확정 |
 | 제품명 | 미정. 문서에서는 임시로 `Namu` 사용 |
-| 저장소의 기준 문서 | `AI_README.md`, `PROJECT_PLAN.md`, `Coding_Convention.md`, `prompt.md` |
+| 저장소의 기준 문서 | `AI_README.md`, `PROJECT_PLAN.md`, `REMAINING_WORK.md`, `Coding_Convention.md`, `prompt.md` |
 
-오늘 UI에는 fixture가 없고 실제 repository/controller 상태만 표시한다. Gateway 설정이 없거나 AI 전송 동의가 없으면 사용자 메시지는 로컬에 실패 상태로 남고, 앱은 필요한 조치를 명시한다. 브라우저 검토는 반드시 실제 `apps/mobile/lib/main.dart`를 실행해야 하며 별도 hardcoded preview를 제품 상태로 취급하지 않는다. 아래 코드 지도에 없는 구현을 추정하지 말고, **확정 / 권장안 / 미정** 구분을 유지한다.
+오늘 UI에는 fixture가 없고 실제 repository/controller 상태만 표시한다. Gateway 설정이 없거나 AI 전송 동의가 없으면 사용자 메시지는 로컬에 실패 상태로 남고, 앱은 필요한 조치를 명시한다. 브라우저 검토는 반드시 실제 `apps/mobile/lib/main.dart`를 실행해야 하며 별도 hardcoded preview를 제품 상태로 취급하지 않는다. 아래 코드 지도에 없는 구현을 추정하지 말고, **확정 / 권장안 / 미정** 구분을 유지한다. 완료되지 않은 작업의 우선순위·의존성·완료 조건은 `REMAINING_WORK.md`를 단일 추적 문서로 사용한다.
 
 ## 2. 작업 시작 순서
 
 1. 이 문서를 읽는다.
 2. AI의 작업 태도와 보고 규칙은 `prompt.md`에서 확인한다.
-3. 제품 범위가 필요한 작업이면 `PROJECT_PLAN.md`의 해당 절만 읽는다.
+3. 남은 작업을 고르거나 상태를 갱신할 때 `REMAINING_WORK.md`를 읽고, 제품 범위가 필요하면 `PROJECT_PLAN.md`의 해당 절만 읽는다.
 4. 코드를 쓰거나 리뷰할 때 `Coding_Convention.md`를 읽는다.
 5. 아래 코드 지도를 보고 작업 대상 feature와 직접 연결된 파일만 추가로 읽는다.
 6. 작업으로 상태가 달라지면 이 문서를 먼저 갱신한 뒤 구현과 테스트를 변경한다.
